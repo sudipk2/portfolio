@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | LifeTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">LifeTracker</div>
+    <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="daily.html">Daily</a></li>
+        <li><a href="gym.html">Gym</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="progress.html">Progress</a></li>
+        <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="card" id="profileFormCard">
+    <h3>Personal Profile</h3>
+
+    <label>Name</label>
+    <input id="name" type="text">
+
+    <label>Age</label>
+    <input id="age" type="number">
+
+    <label>Gender</label>
+    <select id="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select>
+
+    <label>Height (cm)</label>
+    <input id="height" type="number">
+
+    <label>Weight (kg)</label>
+    <input id="weight" type="number">
+
+    <label>Activity Level</label>
+    <select id="activity">
+        <option>Sedentary</option>
+        <option>Lightly Active</option>
+        <option>Active</option>
+        <option>Very Active</option>
+    </select>
+
+    <label>Primary Goal</label>
+    <input id="goal" type="text" placeholder="Fitness / Study / Health">
+
+    <button onclick="saveProfile()">Save Profile</button>
+</div>
+
+
+    <div class="card">
+        <h2>Welcome to LifeTracker</h2>
+        <p id="welcomeText">
+            Track your daily life, gym activities, and weekly progress in one place.
+        </p>
+    </div>
+
+
+</div>
+
+<!-- LOAD CORE LOGIC -->
+<script src="js/app.js"></script>
+<script>
+const formCard = document.getElementById("profileFormCard");
+const viewCard = document.getElementById("profileViewCard");
+
+let profile = JSON.parse(localStorage.getItem(PROFILE_KEY));
+
+if (profile) {
+    showProfile(profile);
+}
+
+function saveProfile() {
+    profile = {
+        name: name.value,
+        age: age.value,
+        gender: gender.value,
+        height: height.value,
+        weight: weight.value,
+        activity: activity.value,
+        goal: goal.value
+    };
+
+    if (!profile.name || !profile.age) {
+        alert("Name and age are required");
+        return;
+    }
+
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+    showProfile(profile);
+}
+
+function showProfile(p) {
+    formCard.style.display = "none";
+    viewCard.style.display = "block";
+
+    vName.innerText = p.name;
+    vAge.innerText = p.age;
+    vGender.innerText = p.gender;
+    vHeight.innerText = p.height;
+    vWeight.innerText = p.weight;
+    vActivity.innerText = p.activity;
+    vGoal.innerText = p.goal;
+}
+
+function editProfile() {
+    formCard.style.display = "block";
+    viewCard.style.display = "none";
+}
+</script>
+
+
+<!-- STEP 5: ASK PERSONAL DETAILS (RUNS ONLY ONCE PER USER) -->
+<script>
+<div class="card" id="profileViewCard" style="display:none;">
+    <h3>Your Profile</h3>
+    <p><strong>Name:</strong> <span id="vName"></span></p>
+    <p><strong>Age:</strong> <span id="vAge"></span></p>
+    <p><strong>Gender:</strong> <span id="vGender"></span></p>
+    <p><strong>Height:</strong> <span id="vHeight"></span> cm</p>
+    <p><strong>Weight:</strong> <span id="vWeight"></span> kg</p>
+    <p><strong>Activity:</strong> <span id="vActivity"></span></p>
+    <p><strong>Goal:</strong> <span id="vGoal"></span></p>
+
+    <button onclick="editProfile()">Edit Profile</button>
+</div>
+
+
+
+/* ---------- OPTIONAL WELCOME TEXT ---------- */
+document.getElementById("welcomeText").innerText =
+    `Welcome back, ${profile.name || "User"}! Stay consistent and track your progress.`;
+</script>
+
+</body>
+</html>
