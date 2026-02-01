@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudip Kandel | Frontend Developer Portfolio</title>
+
+<style>
+
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #020617 0%, #000000 70%);
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+/* ===================== NAVBAR ===================== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+nav h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #e5e7eb;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #38bdf8;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero h2 {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #cbd5f5;
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero-buttons {
+  margin-top: 40px;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 12px;
+  padding: 14px 34px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-buttons .primary {
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #020617;
+}
+
+.hero-buttons .secondary {
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+}
+
+.hero-buttons a:hover {
+  transform: translateY(-3px);
+}
+
+/* ===================== SECTION BASE ===================== */
+section {
+  padding: 120px 12%;
+}
+
+.section-title {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  border-radius: 5px;
+}
+
+/* ===================== ABOUT ===================== */
+.about {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(14px);
+  border-radius: 25px;
+}
+
+.about p {
+  font-size: 17px;
+  color: #d1d5db;
+  max-width: 900px;
+}
+
+/* ===================== EDUCATION ===================== */
+.timeline {
+  border-left: 3px solid #38bdf8;
+  padding-left: 40px;
+}
+
+.timeline-item {
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -53px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  background: #38bdf8;
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  font-size: 22px;
+  color: #e5e7eb;
+}
+
+.timeline-item span {
+  color: #38bdf8;
+  font-size: 14px;
+}
+
+.timeline-item p {
+  margin-top: 8px;
+  color: #cbd5f5;
+}
+
+/* ===================== SKILLS ===================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.skill-box {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.skill-box h4 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.skill-bar {
+  height: 10px;
+  background: #020617;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.skill-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+}
+
+/* ===================== PROJECTS ===================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 35px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  padding: 30px;
+  border-radius: 22px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.project-card p {
+  color: #cbd5f5;
+  margin-bottom: 15px;
+}
+
+.project-card span {
+  font-size: 14px;
+  color: #38bdf8;
+}
+
+/* ===================== CONTACT ===================== */
+.contact {
+  text-align: center;
+}
+
+.contact a {
+  display: inline-block;
+  margin: 15px;
+  padding: 14px 30px;
+  border-radius: 40px;
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact a:hover {
+  background: #38bdf8;
+  color: #020617;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  padding: 40px;
+  text-align: center;
+  background: #020617;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>Sudip</h1>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Frontend Developer</h2>
+    <h1>Sudip Kandel</h1>
+    <p>
+      A motivated frontend developer focused on building clean, scalable, and
+      user-centric web applications using modern technologies with a strong
+      foundation in computer science principles.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="primary">View Projects</a>
+      <a href="#contact" class="secondary">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2 class="section-title">About Me</h2>
+  <p>
+    I am a dedicated and growth-oriented developer with a strong interest in web
+    technologies, backend systems, and real-world problem solving. I enjoy
+    building projects from scratch, learning new frameworks, and continuously
+    improving code quality and performance.
+  </p>
+</section>
+
+<section id="education">
+  <h2 class="section-title">Education</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span>2024 – Present</span>
+      <h3>Bachelor of technology</h3>
+      <p>Focused on programming, algorithms, and software engineering.</p>
+    </div>
+    <div class="timeline-item">
+      <span>2022 – 2024</span>
+      <h3>Higher Secondary Education</h3>
+      <p>Specialized in mathematics and computer fundamentals.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-box">
+      <h4>HTML & CSS</h4>
+      <div class="skill-bar"><span style="width:90%"></span></div>
+    </div>
+    <div class="skill-box">
+      <h4>JavaScript</h4>
+      <div class="skill-bar"><span style="width:75%"></span></div>
+    </div>
+    <div class="skill-box">
+      <h4>Python</h4>
+      <div class="skill-bar"><span style="width:80%"></span></div>
+    </div>
+    <div class="skill-box">
+      <h4>Git & GitHub</h4>
+      <div class="skill-bar"><span style="width:85%"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>Daily activity tracker </h3>
+      <p>A responsive fitness, expenses tracking and compare all the daily activity in weekly basic and  platform with login authentication.</p>
+      <span>HTML • CSS • JavaScript</span>
+    </div>
+    <div class="project-card">
+      <h3>Gym Activity Tracker</h3>
+      <p>Tracks workout activities and performance metrics.</p>
+      <span>JavaScript • DOM</span>
+    </div>
+    <div class="project-card">
+      <h3>Personal Portfolio</h3>
+      <p>A modern portfolio showcasing projects and skills.</p>
+      <span>HTML • CSS</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title">Contact</h2>
+  <a href="mailto:kandelsudip321@gmail.com">Email</a>
+  <a href="https://github.com/sudipk2" target="_blank">GitHub</a>
+  <a href="https://linkedin.com/">LinkedIn</a>
+</section>
+
+<footer>
+  © 2026 Sudip Kandel · Professional Portfolio
+</footer>
+
+</body>
+</html>
